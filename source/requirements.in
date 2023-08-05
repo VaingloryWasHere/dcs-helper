@@ -1,0 +1,4 @@
+discord.py==2.2.3
+DiscordLevelingCard==0.6.0
+Flask==2.3.2
+tinydb==4.8.0
