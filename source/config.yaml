@@ -1,1 +1,11 @@
 Print XP Given: True
+
+#info
+
+Version: 1.0.1
+Version Meta: Alpha 1.0.1
+Instance: Developmental
+Changelog:
+  - Added a `'/bot'` application command group. 
+  - Added `'version'` command under `'/bot'` group.
+  - Added a `/verify` command.

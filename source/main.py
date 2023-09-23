@@ -7,16 +7,14 @@ from datetime import *
 import confuse
 from DiscordLevelingCard import Settings, RankCard
 
+from cogs.verify import Verifier
 from cogs.alive import keep_alive
-from cogs.xp import XP
-from cogs.currency import Bank, Economy
-from cogs.boosters import Boosters
+from cogs.xp import XP, Leaderboard
+from cogs.economy import Basic, Shop
 from cogs.ao3 import Ao3
+from cogs.misc import Bot
 
-#for legacy code support
-from cogs.xp import XPManager as xp
-currency = Bank()
-boosters = Boosters()
+
 
 bot = commands.Bot(command_prefix = ",",intents=discord.Intents.all())
 
@@ -25,11 +23,21 @@ bot = commands.Bot(command_prefix = ",",intents=discord.Intents.all())
 @bot.event
 async def on_ready():
     print("Bot is currently online!")
-    await bot.add_cog(XP(bot))
-    await bot.add_cog(Economy(bot))
+    await bot.add_cog(Verifier(bot))
+    await bot.add_cog(Basic(bot))
+    await bot.add_cog(Shop(bot))
     await bot.add_cog(Ao3(bot))
+    await bot.add_cog(Leaderboard(bot))
+    await bot.add_cog(XP(bot))
+    await bot.add_cog(Bot(bot))
     #add commands to a group
 
+@bot.command()
+async def avatar(ctx):
+    filename = "../assets/avatar.jpg"
+    await ctx.author.display_avatar.save(filename)
+    file = discord.File(fp=filename)
+    await ctx.send("Enjoy :>", file=file)
 
 
 @bot.command(name="sync")
@@ -55,6 +63,6 @@ async def sync(ctx):
 
 keep_alive()
 
-TOKEN = "MTExNTk5MzcxNjEzNDUxODg3NQ.GZv7kk.H1UpZKIbVIlcwxigjvH1JBcXcoTU7N85vEv52Y"
+TOKEN = "MTExNTk5MzcxNjEzNDUxODg3NQ.GPtq7_.ucSRcMszvTCLHxhomLeheGyCFqXD1K4woTyytw"
 
 bot.run(TOKEN)
