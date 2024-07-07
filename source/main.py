@@ -63,6 +63,4 @@ async def sync(ctx):
 
 keep_alive()
 
-TOKEN = "MTExNTk5MzcxNjEzNDUxODg3NQ.GPtq7_.ucSRcMszvTCLHxhomLeheGyCFqXD1K4woTyytw"
-
-bot.run(TOKEN)
+bot.run(os.environ['TOKEN'])
